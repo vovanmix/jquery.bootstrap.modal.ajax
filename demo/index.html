@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="../include/bootstrap-modal/css/bootstrap-modal-bs3patch.css" />
+		<link rel="stylesheet" href="../include/bootstrap-modal/css/bootstrap-modal.css" />
+		
+		<script type="text/javascript" src="../include/jquery.min.js"></script>
+		<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../include/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+		<script type="text/javascript" src="../include/bootstrap-modal/js/bootstrap-modal.js"></script>
+		
+		<script type="text/javascript" src="../jquery.bootstrap.modal.ajax.js"></script>
+		
+	</head>
+	<body>
+		<div>TODO write content</div>
+		
+		add modal html to code automatically in plugin on ready
+		handle class and data on ready
+		extension to serialize object
+		id form to serialize
+		additional data object
+		action on success
+		action on error
+		place to show result - DOM or modal
+		
+		<div>
+			<h3>1. open a modal via AJAX in the simple way</h3>
+			
+			<p>
+				<a href="#" id="test1">Open some page by clicking here</a>
+			</p>
+			<script>
+				$('#test1').click(function(){
+					$.openajaxmodal( 'ajax.html' );
+				});
+			</script>
+			
+			<p>
+				<a href="ajax.html" id="test2">This link have a handler</a>
+			</p>
+			<script>
+				$('#test2').ajaxmodal();
+			</script>
+		</div>
+		
+		<div>
+			<h3>2. open a modal via AJAX from the href attribute</h3>
+			<p>
+				<a href="ajax.html" data-close_button="true" class='ajaxmodal'>Open some page by clicking here</a>
+			</p>
+		</div>
+		
+		<div>
+			<h3>3. send a form to the remote handler and show it's response in a modal</h3>
+			
+			<form action="ajax.html" class="ajaxmodal" method="post" id="review_form">
+				<input type="hidden" name="product_id" value="60">
+				<div class="row">
+					<label>Name</label>
+					<input type="text" name="authorname">
+				</div>
+
+				<div class="row">
+					<label>Email</label>
+					<input type="text" name="email">
+				</div>
+				
+				<div class="row">
+					<label>Review</label>
+					<textarea name="text"></textarea>
+				</div>
+				<input type="submit"/>
+			</form>
+			<script>
+				//$('#review_form').ajaxmodal({actionButtons: [{label: 'Close', type: 'close'}]});
+			</script>
+		</div>
+		
+		<div>
+			<h3>4. send a form to the remote handler, receive JSON and show result in a modal</h3>
+			
+			<form class="ajaxmodal" data-close_button="true" data-response_type="json" action="json.html" method="get" id="review_form2">
+				<input type="hidden" name="product_id" value="60">
+				<div class="row">
+					<label>Name</label>
+					<input type="text" name="authorname">
+				</div>
+
+				<div class="row">
+					<label>Email</label>
+					<input type="text" name="email">
+				</div>
+				
+				<div class="row">
+					<label>Review</label>
+					<textarea name="text"></textarea>
+				</div>
+				<input type="submit"/>
+			</form>
+			<script>
+				//$('#review_form2').ajaxmodal({closeButton: true, responseType: 'json'});
+			</script>
+		</div>
+		
+		<div>
+			<h3>5. send a form to the remote handler, receive JSON and add response to the DOM element</h3>
+			
+			<div id="result_holder"></div>
+			<form action="json.html" method="get" id="review_form3">
+				<input type="hidden" name="product_id" value="60">
+				<div class="row">
+					<label>Name</label>
+					<input type="text" name="authorname">
+				</div>
+
+				<div class="row">
+					<label>Email</label>
+					<input type="text" name="email">
+				</div>
+				
+				<div class="row">
+					<label>Review</label>
+					<textarea name="text"></textarea>
+				</div>
+				<input type="submit"/>
+			</form>
+			<script>
+				$('#review_form3').ajaxmodal({
+					closeButton: true,
+					responseType: 'json',
+					responseHolder: "result_holder"
+				});
+			</script>
+		</div>
+		
+	</body>
+</html>
